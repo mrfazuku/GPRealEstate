@@ -129,7 +129,7 @@ public class GPREListener
 
       }
       else if ((signPlayer.getName().equalsIgnoreCase(signClaim.parent.getOwnerName())) || (signClaim.isManager(signPlayer.getName()))) {
-    	  if ((signClaim.isAdminClaim()) && (signPlayer.hasPermission("GPRealEstate.sellsub"))){
+    	  if (signPlayer.hasPermission("GPRealEstate.sellsub")){
     		  
         event.setLine(0, this.plugin.signNameLong);
         event.setLine(1, ChatColor.GREEN + "FOR LEASE");
@@ -208,7 +208,6 @@ public class GPREListener
           	  signPlayer.sendMessage(ChatColor.AQUA + "You already own this claim!");
           	  return;
             }
-
           }
           else
           {
@@ -225,7 +224,11 @@ public class GPREListener
           		  signPlayer.sendMessage(ChatColor.AQUA + "You already own this claim!");
               return;
             }
-
+            if (sign.getLine(1).equalsIgnoreCase(ChatColor.GREEN + "FOR SALE") || sign.getLine(1).equalsIgnoreCase("FOR SALE")) {
+            	signPlayer.sendMessage(ChatColor.RED + "ERROR: " + ChatColor.AQUA + "Misplaced sign!");
+            	event.getClickedBlock().setType(Material.AIR); 
+            	return;
+            }
           }
 
           String[] signDelimit = sign.getLine(3).split(" ");
@@ -255,14 +258,20 @@ public class GPREListener
 
           }
 
-          if (sign.getLine(1).equalsIgnoreCase(ChatColor.GREEN + "FOR SALE") || sign.getLine(1).equalsIgnoreCase("FOR SALE"))
-          {
+          if (sign.getLine(1).equalsIgnoreCase(ChatColor.GREEN + "FOR SALE") || sign.getLine(1).equalsIgnoreCase("FOR SALE")) {
             try {
-              gp.dataStore.changeClaimOwner(signClaim, signPlayer.getName());
+            	for (Claim child : signClaim.children) {
+            		child.clearPermissions();
+            		child.clearManagers();
+            	}
+            	
+            	signClaim.clearPermissions();
+            	signClaim.clearManagers();                	
+            	gp.dataStore.changeClaimOwner(signClaim, signPlayer.getName());
             }
             catch (Exception e) {
-              e.printStackTrace();
-              return;
+            	e.printStackTrace();
+            	return;
             }
 
             if (signClaim.getOwnerName().equalsIgnoreCase(signPlayer.getName())) {
