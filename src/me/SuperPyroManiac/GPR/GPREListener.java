@@ -276,6 +276,7 @@ public class GPREListener
                 ChatColor.BLUE + "=-------");
               signPlayer.sendMessage(ChatColor.AQUA + 
                 "You already own this claim!");
+              return;
             }
           }
           else
