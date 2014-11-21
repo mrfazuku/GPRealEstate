@@ -1,29 +1,31 @@
 name: GPRealEstate
 main: me.SuperPyroManiac.GPR.GPRealEstate
-version: 1.4
+version: 1.4.2
 author: SuperPyroManiac
 depend: [GriefPrevention, Vault]
 
 permissions:
-  GPRealEstate.*:
-    description: Gives access to all GPRealEstate functions.
+  gprealestate.*:
+    description: Gives access to all GPRealEstate permissions.
     default: op
     children:
       GPRealEstate.sell: true
       GPRealEstate.buy: true
-      GPRealEstate.Adminclaim: true
-  GPRealEstate.sell:
+      gprealestate.adminclaim: true
+      gprealestate.sellsub: true
+      gprealestate.buysub: true
+  gprealestate.sell:
     description: Allows player to sell claims.
     default: true
-  GPRealEstate.buy:
+  gprealestate.buy:
     description: Allows player to buy claims.
     default: true
-  GPRealEstate.Adminclaim:
-    description: Allows players to sell admin claims
+  gprealestate.adminclaim:
+    description: Allows players to sell admin claims.
     default: false
-  GPRealEstate.sellsub:
+  gprealestate.sellsub:
     description: Allows player to sell subclaims.
     default: true
-  GPRealEstate.buysub:
+  gprealestate.buysub:
     description: Allows player to buy subclaims.
     default: true
