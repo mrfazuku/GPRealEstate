@@ -1,4 +1,4 @@
-package me.SuperPyroManiac.GPR;
+package me.MrFazuku.GPR;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

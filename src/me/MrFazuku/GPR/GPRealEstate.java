@@ -1,4 +1,4 @@
-package me.SuperPyroManiac.GPR;
+package me.MrFazuku.GPR;
 
 import java.io.File;
 import java.io.FileWriter;
