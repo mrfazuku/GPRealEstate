@@ -1,7 +1,7 @@
 name: GPRealEstate
-main: me.SuperPyroManiac.GPR.GPRealEstate
-version: 1.4.2
-author: SuperPyroManiac
+main: me.MrFazuku.GPR.GPRealEstate
+version: 1.4.3
+author: MrFazuku
 depend: [GriefPrevention, Vault]
 
 permissions:
