@@ -3,10 +3,12 @@ package me.MrFazuku.GPR;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import net.milkbowl.vault.economy.EconomyResponse;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -218,7 +220,8 @@ public class GPREListener
     }
   }
 
-  @EventHandler
+  @SuppressWarnings("deprecation")
+@EventHandler
   public void onSignInteract(PlayerInteractEvent event) {
     if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
       Material type = event.getClickedBlock().getType();
@@ -426,8 +429,8 @@ public class GPREListener
               if (!sign.getLine(2).equalsIgnoreCase("server")) {
                 signClaim.managers.remove(sign.getLine(2));
               }
-              signClaim.managers.add(signPlayer.signPlayer.getUniqueId());
-              signClaim.setPermission(signPlayer.signPlayer.getUniqueId(), 
+              signClaim.managers.add(signPlayer.getUniqueId().toString());
+              signClaim.setPermission(signPlayer.getUniqueId().toString(), 
                 ClaimPermission.Build);
               gp.dataStore.saveClaim(signClaim);
               event.getClickedBlock().breakNaturally();
